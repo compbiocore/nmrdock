@@ -38,6 +38,8 @@ RUN cd /home/ubuntu \
 
 ENV PATH /home/ubuntu/miniconda2/bin:$PATH
 
+RUN conda install -y numpy scipy wxpython 
+
 RUN cd home/ubuntu \
   && wget https://www.ibbr.umd.edu/nmrpipe/install.com \
   && wget https://www.ibbr.umd.edu/nmrpipe/binval.com \
@@ -53,5 +55,21 @@ RUN cd home/ubuntu \
   && cd nmrfam-sparky-linux64 \
   && sudo python ./install.py /usr/local/src \
   # && sudo cp /usr/lib32/libz.so.1 /usr/local/src/nmrfam-sparky-linux64/lib/libz.so \
-  && touch /home/ubuntu/.cshrc \
-  && echo 'setenv PATH ${PATH}:/usr/local/bin/nmrfam-sparky-linux64/bin' >> /home/ubuntu/.cshrc
+  && touch /home/ubuntu/.cshrc
+  # && echo 'setenv PATH ${PATH}:/usr/local/bin/nmrfam-sparky-linux64/bin' >> /home/ubuntu/.cshrc
+
+RUN cd home/ubuntu \
+  && wget https://sourceforge.net/projects/nmr-relax/files/4.1.1/relax-4.1.1.GNU-Linux.x86_64.tar.bz2 \
+  && tar xjf relax-4.1.1.GNU-Linux.x86_64.tar.bz2 \
+  && sudo ln -s /home/ubuntu/relax-4.1.1/relax /usr/local/bin \
+  && wget https://downloads.sourceforge.net/project/minfx/1.0.12/minfx-1.0.12.zip \
+  && unzip minfx-1.0.12.zip \
+  && cd /home/ubuntu/minfx-1.0.12 \
+  && pip install . \
+  && cd /home/ubuntu/ \
+  && wget https://downloads.sourceforge.net/project/bmrblib/1.0.4/bmrblib-1.0.4.zip \
+  && unzip bmrblib-1.0.4.zip \
+  && cd bmrblib-1.0.4 \
+  && pip install .
+
+
