@@ -1,2 +1,31 @@
 # nmr_image
-NMR docker image dockerfile
+NMR docker image dockerfile instructions
+
+
+To run this image on OSX, a few steps must be taken to enable X11 interfacing between the container and the host machine.  The reason for these steps is that the Mac version of Docker is technically run inside of a VM, so that VM must be set to correctly forward ports.
+
+First, run the following command:
+
+  `ifconfig en0`
+
+This command will yield a bunch of text.  One row will begin with:
+
+  `inet x.x.x.x`  
+
+Note that this is not the same as the row beginning with "inet6".  The x.x.x.x IP address should be copied, and ":0" should be appended to it, leaving you with:
+
+  `x.x.x.x:0`
+
+Next, you must download the software "socat" from Homebrew to enable the port forwarding.  To do so, type:
+
+  `brew install socat`
+  
+With socat installed, open a terminal window and type:
+
+  `socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"`
+  
+Open another terminal tab without closing the socat tab, and then type:
+
+`docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmr-image:v1 /bin/csh`
+
+This command will open an interactive c-shell that forwards all GUI information to the local Xterm.
