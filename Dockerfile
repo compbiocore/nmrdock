@@ -72,4 +72,4 @@ RUN cd home/ubuntu \
   && cd bmrblib-1.0.4 \
   && pip install .
 
-
+RUN mkdir /home/ubuntu/data
