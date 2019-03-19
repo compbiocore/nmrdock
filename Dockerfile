@@ -2,7 +2,9 @@ FROM ubuntu:16.04
 LABEL maintainer "Andrew Leith <andrew_leith@brown.edu>"
 LABEL repository compbiocore/nmr-image
 LABEL image nmr-image
-LABEL tag v1
+LABEL tag latest
+
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN apt-get update -y \
     && apt-get -y install wget \
