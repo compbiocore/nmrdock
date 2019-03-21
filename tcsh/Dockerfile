@@ -25,7 +25,7 @@ RUN apt-get update -y \
     && apt-get -y install libqtcore4 libqtgui4 \
     && apt clean all
 
-RUN sudo ln -s /bin/tcsh /bin/csh
+RUN sudo rm /bin/csh && sudo ln -s /bin/tcsh /bin/csh
 
 RUN useradd -m -d /home/ubuntu -s /bin/bash ubuntu \
     && echo "ubuntu ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/ubuntu \
