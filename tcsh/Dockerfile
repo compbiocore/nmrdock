@@ -25,7 +25,7 @@ RUN apt-get update -y \
     && apt-get -y install libqtcore4 libqtgui4 \
     && apt clean all
 
-RUN sudo rm /bin/csh && sudo ln -s /bin/tcsh /bin/csh
+# RUN sudo rm /bin/csh && sudo ln -s /bin/tcsh /bin/csh
 
 RUN useradd -m -d /home/ubuntu -s /bin/bash ubuntu \
     && echo "ubuntu ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/ubuntu \
@@ -75,5 +75,7 @@ RUN cd home/ubuntu \
   && unzip bmrblib-1.0.4.zip \
   && cd bmrblib-1.0.4 \
   && pip install .
+
+RUN sudo ln -s /bin/tcsh /bin/csh
 
 RUN mkdir /home/ubuntu/data
