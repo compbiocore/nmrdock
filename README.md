@@ -29,3 +29,15 @@ Open another terminal tab without closing the socat tab, and then type:
 `docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmr-image:v1 /bin/csh`
 
 This command will open an interactive c-shell that forwards all GUI information to the local Xterm.
+
+## Windows (not officially supported)
+
+To run on Windows:
+
+Download and install VcXsrv Windows X Server. You can download it from: https://sourceforge.net/projects/vcxsrv/
+
+Before launching Docker, start XLaunch by double clicking the Desktop icon. A window will appear for you to set configurations. Use the default options on the first two pages and press the next button. On the third page select the box next to “Disable access control” to ensure the Docker has access to the Xserv.
+
+Get your IP address using ipconfig.
+
+Open Docker and execute ‘docker run -it -e DISPLAY=x.x.x.x:0.0 compbiocore/nmr-image:v1 /bin/csh’ where x.x.x.x is your IP address.
