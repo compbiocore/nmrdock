@@ -40,4 +40,4 @@ Before launching Docker, start XLaunch by double clicking the Desktop icon. A wi
 
 Get your IP address using ipconfig.
 
-Open Docker and execute ‘docker run -it -e DISPLAY=x.x.x.x:0.0 compbiocore/nmr-image:v1 /bin/csh’ where x.x.x.x is your IP address.
+Open Docker and execute `docker run -it -e DISPLAY=x.x.x.x:0.0 compbiocore/nmr-image:v1 /bin/csh` where x.x.x.x is your IP address.
