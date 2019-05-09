@@ -75,3 +75,14 @@ RUN cd home/ubuntu \
   && pip install .
 
 RUN mkdir /home/ubuntu/data
+
+RUN cd home/ubuntu \
+  && mkdir nmr_wrappers \
+  && cd nmr_wrappers \
+  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/master/nmr_wrappers/bruker \
+  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/master/nmr_wrappers/nmrDraw \
+  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/master/nmr_wrappers/sparky \
+  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/master/nmr_wrappers/varian \
+  && chmod -R 755 /home/ubuntu/nmr_wrappers
+
+ENV PATH /home/ubuntu/nmr_wrappers:$PATH
