@@ -1,3 +1,3 @@
 #!/bin/csh
 
-varian "$argv:q"
+/home/ubuntu/com/varian "$argv:q"
