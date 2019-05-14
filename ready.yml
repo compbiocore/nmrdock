@@ -1,0 +1,11 @@
+repo:             nmrdock
+site_name:        "Docker Image for NMR Tools"
+authors:      
+  - name: Andrew Leith
+    github_user: andrew-leith
+  - name: Kyle East
+    github_user: kyleeast13
+repo_url:         https://github.com/compbiocore/nmrdock
+site_description: "This site describes the acquisition and use of the nmrdock docker image containing a variety of tools for analyzing NMR data both from the command line and via GUI. The site contains screenshots and video in addition to the standard narrative documentation.."
+docs_url:         https://compbiocore.github.io/nmrdock
+type:             software    # required. choose one of [software, tutorial, workshop, documentation]

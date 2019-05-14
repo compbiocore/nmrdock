@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 LABEL maintainer "Andrew Leith <andrew_leith@brown.edu>"
-LABEL repository compbiocore/nmr-image
-LABEL image nmr-image
+LABEL repository compbiocore/nmrdock
+LABEL image nmrdock
 LABEL tag latest
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
