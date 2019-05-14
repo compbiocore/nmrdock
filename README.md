@@ -26,7 +26,7 @@ With socat installed, open a terminal window and type:
   
 Open another terminal tab without closing the socat tab, and then type:
 
-`docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmr-image:v1 /bin/csh`
+`docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmrdock:latest /bin/csh`
 
 This command will open an interactive c-shell that forwards all GUI information to the local Xterm.
 
@@ -40,4 +40,4 @@ Before launching Docker, start XLaunch by double clicking the Desktop icon. A wi
 
 Get your IP address using ipconfig.
 
-Open Docker and execute `docker run -it -e DISPLAY=x.x.x.x:0.0 compbiocore/nmr-image:v1 /bin/csh` where x.x.x.x is your IP address.
+Open Docker and execute `docker run -it -e DISPLAY=x.x.x.x:0.0 compbiocore/nmrdock:latest /bin/csh` where x.x.x.x is your IP address.
