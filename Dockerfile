@@ -88,4 +88,4 @@ RUN cd home/ubuntu \
 ENV PATH /home/ubuntu/nmr_wrappers:$PATH
 
 RUN sudo ln -s /home/ubuntu/nmrbin.linux /usr/local/bin/nmrbin.linux \
-  && alias sparky="export SPARKYHOME='pwd';sparky" >> /home/ubuntu/.bashrc
+  && echo "alias sparky=\"export SPARKYHOME='pwd';sparky\"" >> /home/ubuntu/.bashrc
