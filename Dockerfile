@@ -86,3 +86,5 @@ RUN cd home/ubuntu \
   && chmod -R 755 /home/ubuntu/nmr_wrappers
 
 ENV PATH /home/ubuntu/nmr_wrappers:$PATH
+
+RUN ln -s /home/ubuntu/nmrbin.linux /usr/local/bin/nmrbin.linux
