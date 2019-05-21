@@ -89,3 +89,5 @@ ENV PATH /home/ubuntu/nmr_wrappers:$PATH
 
 RUN sudo ln -s /home/ubuntu/nmrbin.linux /usr/local/bin/nmrbin.linux \
   && echo "alias sparky=\"export SPARKYHOME='pwd';sparky\"" >> /home/ubuntu/.bashrc
+
+ENV PATH /usr/local/bin/nmrbin.linux:$PATH
