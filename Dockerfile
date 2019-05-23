@@ -93,9 +93,8 @@ RUN cd home/ubuntu \
   && wget https://raw.githubusercontent.com/compbiocore/nmrdock/dev/nmr_wrappers/varian \
   && chmod -R 755 /home/ubuntu/nmr_wrappers
 
-ENV PATH /home/ubuntu/nmr_wrappers:$PATH
-
 RUN sudo ln -s /home/ubuntu/NMRPipe/nmrbin.linux /usr/local/bin/nmrbin.linux \
   && echo "alias sparky=\"export SPARKYHOME='pwd';sparky\"" >> /home/ubuntu/.bashrc
 
-#ENV PATH /usr/local/bin/nmrbin.linux:$PATH
+ENV PATH /usr/local/bin/nmrbin.linux:$PATH
+ENV PATH /home/ubuntu/nmr_wrappers:$PATH
