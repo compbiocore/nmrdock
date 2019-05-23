@@ -42,20 +42,24 @@ ENV PATH /home/ubuntu/miniconda2/bin:$PATH
 
 RUN conda install -y numpy scipy wxpython 
 
-RUN cd home/ubuntu \
+RUN cd home/ubuntu/ \
+  && mkdir NMRPipe \
+  && cd NMRPipe \
   && wget https://www.ibbr.umd.edu/nmrpipe/install.com \
   && wget https://www.ibbr.umd.edu/nmrpipe/binval.com \
   && wget https://www.ibbr.umd.edu/nmrpipe/NMRPipeX.tZ \
   && wget https://www.ibbr.umd.edu/nmrpipe/s.tZ \
   && wget https://www.ibbr.umd.edu/nmrpipe/dyn.tZ \
   && wget https://www.ibbr.umd.edu/nmrpipe/talos.tZ \
-  && /bin/csh /home/ubuntu/install.com
+  && /bin/csh /home/ubuntu/NMRPipe/install.com \
+  && rm -rf install.com binval.com NMRPipeX.tZ s.tZ dyn.tZ talos.tZ
 
 RUN cd home/ubuntu \
   && wget https://s3.us-east-2.amazonaws.com/brown-docker-resources/nmrfam-sparky-linux64.tar.gz \
   && tar xvfz nmrfam-sparky-linux64.tar.gz \
   && cd nmrfam-sparky-linux64 \
   && sudo python ./install.py /usr/local/src \
+  && rm -rf nmrfam-sparky-linux64.tar.gz \
   # && sudo cp /usr/lib32/libz.so.1 /usr/local/src/nmrfam-sparky-linux64/lib/libz.so \
   && touch /home/ubuntu/.cshrc
   # && echo 'setenv PATH ${PATH}:/usr/local/bin/nmrfam-sparky-linux64/bin' >> /home/ubuntu/.cshrc
@@ -69,20 +73,24 @@ RUN cd home/ubuntu \
   && cd /home/ubuntu/minfx-1.0.12 \
   && pip install . \
   && cd /home/ubuntu/ \
+  && rm -rf minfx* \
   && wget https://downloads.sourceforge.net/project/bmrblib/1.0.4/bmrblib-1.0.4.zip \
   && unzip bmrblib-1.0.4.zip \
   && cd bmrblib-1.0.4 \
-  && pip install .
+  && pip install . \
+  && rm -rf bmrblib* \
+  && cd /home/ubuntu/ \
+  && rm relax-4.1.1.GNU-Linux.x86_64.tar.bz2 
 
 RUN mkdir /home/ubuntu/data
 
 RUN cd home/ubuntu \
   && mkdir nmr_wrappers \
   && cd nmr_wrappers \
-  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/master/nmr_wrappers/bruker \
-  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/master/nmr_wrappers/nmrDraw \
-  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/master/nmr_wrappers/sparky \
-  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/master/nmr_wrappers/varian \
+  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/dev/nmr_wrappers/bruker \
+  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/dev/nmr_wrappers/nmrDraw \
+  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/dev/nmr_wrappers/sparky \
+  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/dev/nmr_wrappers/varian \
   && chmod -R 755 /home/ubuntu/nmr_wrappers
 
 ENV PATH /home/ubuntu/nmr_wrappers:$PATH
