@@ -87,15 +87,15 @@ RUN mkdir /home/ubuntu/data
 RUN cd home/ubuntu \
   && mkdir nmr_wrappers \
   && cd nmr_wrappers \
-  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/dev/nmr_wrappers/bruker \
-  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/dev/nmr_wrappers/nmrDraw \
-  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/dev/nmr_wrappers/sparky \
-  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/dev/nmr_wrappers/varian \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/dev/nmr_wrappers/bruker \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/dev/nmr_wrappers/nmrDraw \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/dev/nmr_wrappers/sparky \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/dev/nmr_wrappers/varian \
   && chmod -R 755 /home/ubuntu/nmr_wrappers
 
 ENV PATH /home/ubuntu/nmr_wrappers:$PATH
 
-RUN sudo ln -s /home/ubuntu/nmrbin.linux /usr/local/bin/nmrbin.linux \
+RUN sudo ln -s /home/ubuntu/NMRPipe/nmrbin.linux /usr/local/bin/nmrbin.linux \
   && echo "alias sparky=\"export SPARKYHOME='pwd';sparky\"" >> /home/ubuntu/.bashrc
 
-ENV PATH /usr/local/bin/nmrbin.linux:$PATH
+#ENV PATH /usr/local/bin/nmrbin.linux:$PATH
