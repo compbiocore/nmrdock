@@ -59,9 +59,10 @@ RUN cd home/ubuntu \
   && tar xvfz nmrfam-sparky-linux64.tar.gz \
   && cd nmrfam-sparky-linux64 \
   && sudo python ./install.py /usr/local/src \
-  && rm -rf nmrfam-sparky-linux64.tar.gz \
   # && sudo cp /usr/lib32/libz.so.1 /usr/local/src/nmrfam-sparky-linux64/lib/libz.so \
-  && touch /home/ubuntu/.cshrc
+  && touch /home/ubuntu/.cshrc \
+  && cd /home/ubuntu \
+  && rm -rf nmrfam-sparky-linux64.tar.gz 
   # && echo 'setenv PATH ${PATH}:/usr/local/bin/nmrfam-sparky-linux64/bin' >> /home/ubuntu/.cshrc
 
 RUN cd home/ubuntu \
@@ -78,9 +79,9 @@ RUN cd home/ubuntu \
   && unzip bmrblib-1.0.4.zip \
   && cd bmrblib-1.0.4 \
   && pip install . \
-  && rm -rf bmrblib* \
   && cd /home/ubuntu/ \
-  && rm relax-4.1.1.GNU-Linux.x86_64.tar.bz2 
+  && rm -rf bmrblib* \
+  && rm -rf *.tar.bz2 
 
 RUN mkdir /home/ubuntu/data
 
