@@ -30,7 +30,7 @@ Open another terminal tab without closing the socat tab, and then type:
 
 **Note: The latest version of NMRdock includes wrapper scripts for the various c-shell executibles.  It is therefore now possible (and, in fact, recommended) to interact with NMRdock using a bash shell.  The software will still be opened using c-shell.**  Any bugs created by this approach should be opened as Issues on github.
 
-This command will open an interactive c-shell that forwards all GUI information to the local Xterm.
+This command will open an interactive bash shell that forwards all GUI information to the local Xterm.
 
 ## Windows (not officially supported)
 
