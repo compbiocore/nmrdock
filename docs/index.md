@@ -7,7 +7,7 @@
 
 
 
-<img src="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/docker_bruker.png" width="506" height="308" style="border: #000000 3px outset;">
+<a href="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/docker_bruker.png"><img src="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/docker_bruker.png" width="506" height="308" style="border: #000000 3px outset;"></a>
 
 
 
