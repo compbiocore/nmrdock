@@ -1,7 +1,13 @@
 # Brown CBC's NMR Docker Image Documentation
 
 [![Docs](https://img.shields.io/badge/docs-stable-blue.svg?style=flat-square)](https://compbiocore.github.io/nmrdock)
-[![License](https://img.shields.io/aur/license/yaourt.svg)](https://raw.githubusercontent.com/compbiocore/nmrdock/master/LICENSE)
+[![License](https://img.shields.io/github/license/compbiocore/nmrdock.svg)](https://raw.githubusercontent.com/compbiocore/nmrdock/master/LICENSE)
+
+### NMRdock
+
+
+
+
 
 ### Installation (OSX)
 
