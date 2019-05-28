@@ -26,7 +26,9 @@ With socat installed, open a terminal window and type:
   
 Open another terminal tab without closing the socat tab, and then type:
 
-`docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmrdock:latest /bin/csh`
+`docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmrdock:latest /bin/bash`
+
+**Note: The latest version of NMRdock includes wrapper scripts for the various c-shell executibles.  It is therefore now possible (and, in fact, recommended) to interact with NMRdock using a bash shell.  The software will still be opened using c-shell.**  Any bugs created by this approach should be opened as Issues on github.
 
 This command will open an interactive c-shell that forwards all GUI information to the local Xterm.
 
