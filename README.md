@@ -1,4 +1,4 @@
-# nmr_image
+# NMRdock
 NMR docker image dockerfile instructions
 
 
