@@ -86,6 +86,20 @@ RUN cd home/ubuntu \
 RUN mkdir /home/ubuntu/data
 
 RUN cd home/ubuntu \
+  && mkdir test \
+  && cd test \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/dev/testdata/bruker2D.tar.gz \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/dev/testdata/bruker3D.tar.gz \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/dev/testdata/varian2D.tar.gz \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/dev/testdata/varian3D.tar.gz \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/dev/testdata/testcommands.txt \
+  && tar -xzvf bruker2D.tar.gz \
+  && tar -xzvf bruker3D.tar.gz \
+  && tar -xzvf varian2D.tar.gz \
+  && tar -xzvf varian3D.tar.gz \
+  && rm -rf *.tar.gz
+
+RUN cd home/ubuntu \
   && mkdir nmr_wrappers \
   && cd nmr_wrappers \
   && wget https://raw.githubusercontent.com/compbiocore/nmrdock/dev/nmr_wrappers/bruker \
