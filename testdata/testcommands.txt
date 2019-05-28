@@ -1,0 +1,10 @@
+cd mnt/DockerTest/bruker2D/
+./fid.com
+./nmrproc.com
+pipe2ucsf test.ft2 test.ucsf
+cd ../bruker3D/
+./fid.com
+./nmrproc.com
+cd ft
+/home/ubuntu/nmrbin.linux/xyz2pipe -in test%03d.ft3 -x > test.ft
+pipe2ucsf test.ft test.ucsf
