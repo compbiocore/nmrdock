@@ -1,4 +1,4 @@
-cd mnt/DockerTest/bruker2D/
+cd /home/ubuntu/test/bruker2D/
 ./fid.com
 ./nmrproc.com
 pipe2ucsf test.ft2 test.ucsf
