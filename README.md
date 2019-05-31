@@ -23,7 +23,7 @@ To run this image on OSX, a few steps must be taken to enable **X11** interfacin
 
 	`docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmrdock:latest /bin/bash`
 
-	where `x.x.x.x` is given by `ifconfig getifaddr en0` and `[path to a directory on local computer]` can be set to your \`pwd\` or the directory of your data.
+	where `x.x.x.x` is given by `ifconfig getifaddr en0` and `[path to a directory on local computer]` can be set to your \`pwd\` or the directory of your data. To use the development branch NMRdock, replace `latest` with `dev`.
 
 This can be done with the following script command:
 ```
@@ -32,7 +32,7 @@ This can be done with the following script command:
 open -a "Terminal"
 osascript -e 'tell application "Terminal" to do script "socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\\\"$DISPLAY\\\""'
 set A = `ipconfig getifaddr en0`
-set C = ":0 compbiocore/nmr-image:latest /bin/bash"
+set C = ":0 compbiocore/nmrdock:latest /bin/bash"
 set B = "docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/home/ubuntu/data/ -w /home/ubuntu/data/ -e DISPLAY=$A$C"
 
 exec $B
@@ -51,7 +51,7 @@ To run this image on Windows, a few steps must be taken to enable **X11** interf
 
 5. Open Docker and execute `docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -e DISPLAY=x.x.x.x:0.0 compbiocore/nmrdock:latest /bin/bash`
 
-	where `x.x.x.x` is your IP address.
+	where `x.x.x.x` is your IP address. To use the development branch NMRdock, replace `latest` with `dev`.
 
 ### Linux
 Most Linux distros have a native XServer that can be accessed by Docker. Docker can be run using the following command:
@@ -61,3 +61,5 @@ Most Linux distros have a native XServer that can be accessed by Docker. Docker 
 Some distros require DISPLAY to be defined:
 
 `docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v [path to a directory on local computer]:/home/ubuntu/data/ compbiocore/nmrdock:latest /bin/bash`
+
+To use the development branch NMRdock, replace `latest` with `dev`.
