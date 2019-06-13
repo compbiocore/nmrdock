@@ -1,0 +1,76 @@
+#!/bin/bash
+
+which -s socat
+if [ $? != 0 ]
+then
+   echo "socat not installed"
+   which -s brew
+   if [ $? != 0 ]
+   then 
+      echo "Homebrew not installed"
+      which -s port
+      if [ $? != 0 ]
+      then 
+         echo "Homebrew and Macports not installed"
+         echo "Installing Homebrew"
+         xcode-select --install
+         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+         echo "Installing socat"
+         brew install socat
+      else
+         echo "Port installed"
+         echo "Installing socat"
+         sudo port install socat
+      fi
+   else
+      echo "Brew installed"
+      echo "Installing socat"
+      brew install socat
+   fi
+fi
+which -s docker
+if [ $? != 0 ]
+   then
+   echo "Docker NOT Installed"
+   which -s brew
+   if [ $? != 0 ]
+      then
+      echo "Homebrew not installed"
+      which -s port
+      if [ $? != 0 ]
+         then
+         echo "Macports not installed"
+         echo "Installing Homebrew"
+         xcode-select --install
+         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+         echo "Installing Docker"
+         brew cask install docker
+      else
+         sudo port install docker-machine docker-compose docker
+         docker-machine start
+      fi
+   else
+      echo "Homebrew installed"
+      brew cask install docker
+   fi
+else
+   echo "Docker Installed"
+fi
+
+if (! docker stats --no-stream &>/dev/null )
+   then
+   echo "Launching Docker"
+   open /Applications/Docker.app
+   while (! docker stats --no-stream &>/dev/null )
+      do
+      echo "..."
+      sleep 5
+   done
+fi
+open -a "Terminal"
+osascript -e 'tell application "Terminal" to do script "socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\\\"$DISPLAY\\\""'
+A=`ipconfig getifaddr en0`
+C=":0 compbiocore/nmrdock:dev /bin/bash"
+B="docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/home/ubuntu/data/ -w /home/ubuntu/data/ -e DISPLAY=$A$C"
+
+exec $B
