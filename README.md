@@ -1,45 +1,65 @@
 # NMRdock
-NMR docker image dockerfile instructions
 
+## NMR Docker Image Instructions
 
-To run this image on OSX, a few steps must be taken to enable X11 interfacing between the container and the host machine.  The reason for these steps is that the Mac version of Docker is technically run inside of a VM, so that VM must be set to correctly forward ports.
+### Docker Installation
 
-First, run the following command:
+Docker engine for [Mac](https://docs.docker.com/docker-for-mac/install/), [Windows (Home)](https://docs.docker.com/toolbox/overview/),[Windows (Pro, Educational, Enterprise)](https://docs.docker.com/docker-for-windows/install/), and [Linux](https://docs.docker.com/v17.12/install/) must be downloaded and installed in order to run the Docker Image.
 
-  `ifconfig en0`
+**NOTE:** Docker Desktop does **NOT** work on Windows 10 Home Edition. Windows 10 Home Edition requires Docker Toolbox.
 
-This command will yield a bunch of text.  One row will begin with:
+### OSX
 
-  `inet x.x.x.x`  
+To run this image on OSX, a few steps must be taken to enable **X11** interfacing between the container and the host machine. This requires the installation of [XQuartz](https://www.xquartz.org/).
 
-Note that this is not the same as the row beginning with "inet6".  The x.x.x.x IP address should be copied, and ":0" should be appended to it, leaving you with:
+1.  Use [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/) to install **socat**:
 
-  `x.x.x.x:0`
+	`brew install socat` or `port install socat`
+2. With **socat** installed, open a terminal window and type:
 
-Next, you must download the software "socat" from Homebrew to enable the port forwarding.  To do so, type:
+	`socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"`
+3. Leave the **socat** window open and open a new tab in terminal.
+4. Run the docker image by typing:
 
-  `brew install socat`
-  
-With socat installed, open a terminal window and type:
+	`docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmrdock:latest /bin/bash`
 
-  `socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"`
-  
-Open another terminal tab without closing the socat tab, and then type:
+	where `x.x.x.x` is given by `ifconfig getifaddr en0` and `[path to a directory on local computer]` can be set to your \`pwd\` or the directory of your data. To use the development branch NMRdock, replace `latest` with `dev`.
 
-`docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmrdock:latest /bin/bash`
+This can be done with the following script command:
+```
+#!/bin/csh
 
-**Note: The latest version of NMRdock includes wrapper scripts for the various c-shell executibles.  It is therefore now possible (and, in fact, recommended) to interact with NMRdock using a bash shell.  The software will still be opened using c-shell.**  Any bugs created by this approach should be opened as Issues on github.
+open -a "Terminal"
+osascript -e 'tell application "Terminal" to do script "socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\\\"$DISPLAY\\\""'
+set A = `ipconfig getifaddr en0`
+set C = ":0 compbiocore/nmrdock:latest /bin/bash"
+set B = "docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/home/ubuntu/data/ -w /home/ubuntu/data/ -e DISPLAY=$A$C"
 
-This command will open an interactive bash shell that forwards all GUI information to the local Xterm.
+exec $B
+```
+### Windows
 
-## Windows (not officially supported)
+To run this image on Windows, a few steps must be taken to enable **X11** interfacing between the container and the host machine. This requires the installation of [VcXsrv Windows XServer](https://sourceforge.net/projects/vcxsrv/).
 
-To run on Windows:
+1. Open **XLaunch** by double clicking on the Desktop Icon.
 
-Download and install VcXsrv Windows X Server. You can download it from: https://sourceforge.net/projects/vcxsrv/
+2. A window will appear for you to set configurations. Use the default options on the first two pages by pressing the next button.
 
-Before launching Docker, start XLaunch by double clicking the Desktop icon. A window will appear for you to set configurations. Use the default options on the first two pages and press the next button. On the third page select the box next to “Disable access control” to ensure the Docker has access to the Xserv.
+3. On the third page, select the box next "Disable access control" to ensure that the Docker has access to the XServer.
 
-Get your IP address using ipconfig.
+4. Get your IP address using ipconfig 
 
-Open Docker and execute `docker run -it -e DISPLAY=x.x.x.x:0.0 compbiocore/nmrdock:latest /bin/csh` where x.x.x.x is your IP address.
+5. Open Docker and execute `docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -e DISPLAY=x.x.x.x:0.0 compbiocore/nmrdock:latest /bin/bash`
+
+	where `x.x.x.x` is your IP address. To use the development branch NMRdock, replace `latest` with `dev`.
+
+### Linux
+Most Linux distros have a native XServer that can be accessed by Docker. Docker can be run using the following command:
+
+`docker run -it -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v [path to a directory on local computer]:/home/ubuntu/data/ compbiocore/nmrdock:latest /bin/bash`
+
+Some distros require DISPLAY to be defined:
+
+`docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v [path to a directory on local computer]:/home/ubuntu/data/ compbiocore/nmrdock:latest /bin/bash`
+
+To use the development branch NMRdock, replace `latest` with `dev`.
