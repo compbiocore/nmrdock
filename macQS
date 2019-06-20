@@ -1,0 +1,56 @@
+#!/bin/bash
+
+xcode-select -p
+if [ $? != 0 ]
+then
+   echo "Please install XCode Command Line Tools with: xcode-select --install "
+   exit 1
+fi
+which -s socat
+if [ $? != 0 ]
+then
+   which -s brew
+   if [ $? != 0 ]
+   then 
+      which -s port
+      if [ $? != 0 ]
+      then 
+         echo "Please install Homebrew from: "
+         echo "https://brew.sh/"
+         exit 1
+      else
+         echo "Please install socat using MacPorts: "
+         echo "sudo port install socat"
+         exit 1
+      fi
+   else
+      echo "Please install socat using Homebrew: "
+      echo "brew install socat"
+      exit 1
+   fi
+fi
+which -s docker
+if [ $? != 0 ]
+   then
+   echo "Please install Docker Desktop for MacOSX: "
+   echo "https://docs.docker.com/docker-for-mac/install/"
+   exit 1
+fi
+
+if (! docker stats --no-stream &>/dev/null )
+   then
+   echo "Launching Docker"
+   open /Applications/Docker.app
+   while (! docker stats --no-stream &>/dev/null )
+      do
+      echo "..."
+      sleep 5
+   done
+fi
+open -a "Terminal"
+osascript -e 'tell application "Terminal" to do script "socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\\\"$DISPLAY\\\""'
+A=`ipconfig getifaddr en0`
+C=":0 compbiocore/nmrdock:dev /bin/bash"
+B="docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/home/ubuntu/data/ -w /home/ubuntu/data/ -e DISPLAY=$A$C"
+
+exec $B
