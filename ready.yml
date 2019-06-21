@@ -1,5 +1,5 @@
 repo:             nmrdock
-site_name:        "Docker Image for NMR Tools"
+site_name:        "NMRdock"
 authors:      
   - name: Andrew Leith
     github_user: andrew-leith
