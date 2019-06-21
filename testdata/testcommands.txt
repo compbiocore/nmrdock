@@ -6,5 +6,5 @@ cd ../bruker3D/
 ./fid.com
 ./nmrproc.com
 cd ft
-/home/ubuntu/nmrbin.linux/xyz2pipe -in test%03d.ft3 -x > test.ft
+xyz2pipe -in test%03d.ft3 -x > test.ft
 pipe2ucsf test.ft test.ucsf
