@@ -26,3 +26,5 @@ markdown_extensions:
 nav:
   - Home: 'index.md'
   - Walkthroughs: 'walkthroughs.md'
+  - Tool Overview: 'overview.md'
+  - Instructional Media: 'media.md'
