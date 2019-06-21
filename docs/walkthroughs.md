@@ -10,17 +10,19 @@ Docker engine for [Mac](https://docs.docker.com/docker-for-mac/install/), [Windo
 
 To run this image on OSX, a few steps must be taken to enable **X11** interfacing between the container and the host machine. This requires the installation of [XQuartz](https://www.xquartz.org/).
 
-1. Use [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/) to install **socat**:
+1. Install [Docker Desktop](https://docs.docker.com/docker-for-mac/install/)
+
+2. Use [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/) to install **socat**:
 
 	`brew install socat` or `port install socat`
 	
-2. With **socat** installed, open a terminal window and type:
+3. With **socat** installed, open a terminal window and type:
 
 	`socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"`
 	
-3. Leave the **socat** window open and open a new tab in terminal.
+4. Leave the **socat** window open and open a new tab in terminal.
 
-4. Run the docker image by typing:
+5. Run the docker image by typing:
 
 	`docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmrdock:latest /bin/bash`
 
@@ -42,26 +44,25 @@ exec $B
 
 To run this image on Windows, a few steps must be taken to enable **X11** interfacing between the container and the host machine. This requires the installation of [VcXsrv Windows XServer](https://sourceforge.net/projects/vcxsrv/).
 
-1. Open **XLaunch** by double clicking on the Desktop Icon.
+1. Install Docker for Windows [Home](https://docs.docker.com/toolbox/overview/) or [Pro/Educational/Enterprise](https://docs.docker.com/docker-for-windows/install/).
 
-2. A window will appear for you to set configurations. Use the default options on the first two pages by pressing the next button.
+2. Open **XLaunch** by double clicking on the Desktop Icon.
 
-3. On the third page, select the box next "Disable access control" to ensure that the Docker has access to the XServer.
+3. A window will appear for you to set configurations. Use the default options on the first two pages by pressing the next button.
 
-4. Get your IP address using ipconfig 
+4. On the third page, select the box next "Disable access control" to ensure that the Docker has access to the XServer.
 
-5. Open Docker and execute `docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -e DISPLAY=x.x.x.x:0.0 compbiocore/nmrdock:latest /bin/bash`
+5. Get your IP address using ipconfig 
 
-	where `x.x.x.x` is your IP address. To use the development branch NMRdock, replace `latest` with `dev`.
+6. Open Docker and execute `docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -e DISPLAY=x.x.x.x:0.0 compbiocore/nmrdock:latest /bin/bash`
+
+where `x.x.x.x` is your IP address. To use the development branch NMRdock, replace `latest` with `dev`.
 
 ### Linux
+
 Most Linux distros have a native XServer that can be accessed by Docker. 
 
-Docker can be run using the following command:
-
-`docker run -it -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v [path to a directory on local computer]:/home/ubuntu/data/ compbiocore/nmrdock:latest /bin/bash`
-
-Some distros require DISPLAY to be defined:
+Install Docker for your distribution of [Linux](https://docs.docker.com/install/)
 
 `docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v [path to a directory on local computer]:/home/ubuntu/data/ compbiocore/nmrdock:latest /bin/bash`
 
