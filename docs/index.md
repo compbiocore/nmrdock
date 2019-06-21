@@ -8,10 +8,19 @@
 ## Overview
 
 NMRdock is a [Docker](https://www.docker.com/) container image for processing raw NMR time domain data into frequency domain spectra and analyzing the spectra. The image includes [NMRPipe](https://www.ibbr.umd.edu/nmrpipe/index.html) and [NMRFAM-Sparky](https://nmrfam.wisc.edu/nmrfam-sparky-distribution/) for processing and analysis, respectively. NMRdock can be installed on any operating system (OSX, Windows, or Linux) and has the full functionality of both NMRPipe and NMRFAM-Sparky.
+![NMRdock](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/NMRdockOverview.png)
 
-## Quick Start
+## Quick Start Scripts
+
+[![OSX](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/macQS.png)](https://raw.githubusercontent.com/compbiocore/nmrdock/master/macQS)
+[![Linux](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/linuxQS.png)](https://raw.githubusercontent.com/compbiocore/nmrdock/master/linuxQS)
+
+## Installation Guides
+
 [![OSX](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/macQS.png)](https://compbiocore.github.io/nmrdock/walkthroughs/#osx)
+
 [![Linux](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/linuxQS.png)](https://compbiocore.github.io/nmrdock/walkthroughs/#linux)
+
 [![Windows](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/windowsQS.png)](https://compbiocore.github.io/nmrdock/walkthroughs/#windows)
 
 ## Reporting Issues
@@ -25,4 +34,4 @@ Andrew Leith, Kyle East
 
 ### Contact
 
-For assistance, contact cbc-help@brown.edu - this is our general help line, so please specify that your issue is with this site's contents
+For assistance, please contact lisilabnmr@gmail.com and specify NMRdock in the subject line.
