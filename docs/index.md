@@ -12,8 +12,12 @@ NMRdock is a [Docker](https://www.docker.com/) container image for processing ra
 
 ## Quick Start Scripts
 
+Below are quick start scripts for OSX and Linux (Windows coming soon; please use the [installation guide](https://compbiocore.github.io/nmrdock/walkthroughs/#windows)). Click on your operating system to access the script. Right click and save the script as either `macQS.sh` or `linuxQS.sh`.
+
 [![OSX](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/macQS.png)](https://raw.githubusercontent.com/compbiocore/nmrdock/master/macQS)
 [![Linux](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/linuxQS.png)](https://raw.githubusercontent.com/compbiocore/nmrdock/master/linuxQS)
+
+The scripts will make sure that you have the necessary components installed; if not, it will tell you how to install them. If you have everything installed, the script will start NMRdock.
 
 ## Installation Guides
 
