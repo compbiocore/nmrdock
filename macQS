@@ -1,4 +1,5 @@
 #!/bin/bash
+# To use this script, please right click and Save As macQS.sh
 
 xcode-select -p
 if [ $? != 0 ]
