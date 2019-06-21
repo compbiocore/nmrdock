@@ -14,7 +14,7 @@ To run this image on OSX, a few steps must be taken to enable **X11** interfacin
 
 2. Use [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/) to install **socat**:
 
-	`brew install socat` or `port install socat`
+	`brew install socat` or `sudo port install socat`
 	
 3. With **socat** installed, open a terminal window and type:
 
