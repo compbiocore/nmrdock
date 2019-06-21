@@ -10,7 +10,7 @@ Docker engine for [Mac](https://docs.docker.com/docker-for-mac/install/), [Windo
 
 To run this image on OSX, a few steps must be taken to enable **X11** interfacing between the container and the host machine. This requires the installation of [XQuartz](https://www.xquartz.org/).
 
-1.  Use [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/) to install **socat**:
+1. Use [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/) to install **socat**:
 
 	`brew install socat` or `port install socat`
 2. With **socat** installed, open a terminal window and type:
