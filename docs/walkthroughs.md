@@ -13,10 +13,13 @@ To run this image on OSX, a few steps must be taken to enable **X11** interfacin
 1. Use [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/) to install **socat**:
 
 	`brew install socat` or `port install socat`
+	
 2. With **socat** installed, open a terminal window and type:
 
 	`socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"`
+	
 3. Leave the **socat** window open and open a new tab in terminal.
+
 4. Run the docker image by typing:
 
 	`docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmrdock:latest /bin/bash`
@@ -52,7 +55,9 @@ To run this image on Windows, a few steps must be taken to enable **X11** interf
 	where `x.x.x.x` is your IP address. To use the development branch NMRdock, replace `latest` with `dev`.
 
 ### Linux
-Most Linux distros have a native XServer that can be accessed by Docker. Docker can be run using the following command:
+Most Linux distros have a native XServer that can be accessed by Docker. 
+
+Docker can be run using the following command:
 
 `docker run -it -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v [path to a directory on local computer]:/home/ubuntu/data/ compbiocore/nmrdock:latest /bin/bash`
 
