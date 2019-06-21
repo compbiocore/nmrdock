@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if ! [ -x "$(command -v docker)" ]
+   then
+   echo "Please install Docker Desktop for your distro: "
+   echo "https://docs.docker.com/install/"
+   exit 1
+fi
+
+if ! [ "$(docker ps)" ]
+   then
+   echo "Please launch Docker"
+   exit 1
+fi
+
+echo "docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/home/ubuntu/data/ compbiocore/nmrdock:latest /bin/bash"

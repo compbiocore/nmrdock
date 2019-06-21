@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 LABEL maintainer "Andrew Leith <andrew_leith@brown.edu>"
 LABEL repository compbiocore/nmrdock
 LABEL image nmrdock
-LABEL tag latest
+LABEL tag dev
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
@@ -42,14 +42,17 @@ ENV PATH /home/ubuntu/miniconda2/bin:$PATH
 
 RUN conda install -y numpy scipy wxpython 
 
-RUN cd home/ubuntu \
+RUN cd home/ubuntu/ \
+  && mkdir NMRPipe \
+  && cd NMRPipe \
   && wget https://www.ibbr.umd.edu/nmrpipe/install.com \
   && wget https://www.ibbr.umd.edu/nmrpipe/binval.com \
   && wget https://www.ibbr.umd.edu/nmrpipe/NMRPipeX.tZ \
   && wget https://www.ibbr.umd.edu/nmrpipe/s.tZ \
   && wget https://www.ibbr.umd.edu/nmrpipe/dyn.tZ \
   && wget https://www.ibbr.umd.edu/nmrpipe/talos.tZ \
-  && /bin/csh /home/ubuntu/install.com
+  && /bin/csh /home/ubuntu/NMRPipe/install.com \
+  && rm -rf install.com binval.com NMRPipeX.tZ s.tZ dyn.tZ talos.tZ
 
 RUN cd home/ubuntu \
   && wget https://s3.us-east-2.amazonaws.com/brown-docker-resources/nmrfam-sparky-linux64.tar.gz \
@@ -57,7 +60,9 @@ RUN cd home/ubuntu \
   && cd nmrfam-sparky-linux64 \
   && sudo python ./install.py /usr/local/src \
   # && sudo cp /usr/lib32/libz.so.1 /usr/local/src/nmrfam-sparky-linux64/lib/libz.so \
-  && touch /home/ubuntu/.cshrc
+  && touch /home/ubuntu/.cshrc \
+  && cd /home/ubuntu \
+  && rm -rf nmrfam-sparky-linux64.tar.gz 
   # && echo 'setenv PATH ${PATH}:/usr/local/bin/nmrfam-sparky-linux64/bin' >> /home/ubuntu/.cshrc
 
 RUN cd home/ubuntu \
@@ -69,25 +74,42 @@ RUN cd home/ubuntu \
   && cd /home/ubuntu/minfx-1.0.12 \
   && pip install . \
   && cd /home/ubuntu/ \
+  && rm -rf minfx* \
   && wget https://downloads.sourceforge.net/project/bmrblib/1.0.4/bmrblib-1.0.4.zip \
   && unzip bmrblib-1.0.4.zip \
   && cd bmrblib-1.0.4 \
-  && pip install .
+  && pip install . \
+  && cd /home/ubuntu/ \
+  && rm -rf bmrblib* \
+  && rm -rf *.tar.bz2 
 
 RUN mkdir /home/ubuntu/data
 
 RUN cd home/ubuntu \
+  && mkdir test \
+  && cd test \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/testdata/bruker2D.tar.gz \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/testdata/bruker3D.tar.gz \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/testdata/varian2D.tar.gz \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/testdata/varian3D.tar.gz \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/testdata/testcommands.txt \
+  && tar -xzvf bruker2D.tar.gz \
+  && tar -xzvf bruker3D.tar.gz \
+  && tar -xzvf varian2D.tar.gz \
+  && tar -xzvf varian3D.tar.gz \
+  && rm -rf *.tar.gz
+
+RUN cd home/ubuntu \
   && mkdir nmr_wrappers \
   && cd nmr_wrappers \
-  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/master/nmr_wrappers/bruker \
-  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/master/nmr_wrappers/nmrDraw \
-  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/master/nmr_wrappers/sparky \
-  && wget https://raw.githubusercontent.com/compbiocore/nmr_image/master/nmr_wrappers/varian \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/nmr_wrappers/bruker \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/nmr_wrappers/nmrDraw \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/nmr_wrappers/sparky \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/nmr_wrappers/varian \
   && chmod -R 755 /home/ubuntu/nmr_wrappers
 
-ENV PATH /home/ubuntu/nmr_wrappers:$PATH
-
-RUN sudo ln -s /home/ubuntu/nmrbin.linux /usr/local/bin/nmrbin.linux \
+RUN sudo ln -s /home/ubuntu/NMRPipe/nmrbin.linux /usr/local/bin/nmrbin.linux \
   && echo "alias sparky=\"export SPARKYHOME='pwd';sparky\"" >> /home/ubuntu/.bashrc
 
 ENV PATH /usr/local/bin/nmrbin.linux:$PATH
+ENV PATH /home/ubuntu/nmr_wrappers:$PATH
