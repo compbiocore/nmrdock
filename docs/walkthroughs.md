@@ -44,7 +44,7 @@ exec $B
 
 To run this image on Windows, a few steps must be taken to enable **X11** interfacing between the container and the host machine. This requires the installation of [VcXsrv Windows XServer](https://sourceforge.net/projects/vcxsrv/).
 
-1. Install Docker for Windows [Home](https://docs.docker.com/toolbox/overview/) or [Pro/Educational/Enterprise](https://docs.docker.com/docker-for-windows/install/).
+1. Install Docker for Windows [7/8/10 Home](https://docs.docker.com/toolbox/overview/) or [10 Pro/Educational/Enterprise](https://docs.docker.com/docker-for-windows/install/).
 
 2. Open **XLaunch** by double clicking on the Desktop Icon.
 
