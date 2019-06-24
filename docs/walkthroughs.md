@@ -42,21 +42,33 @@ exec $B
 ```
 ### Windows
 
-To run this image on Windows, a few steps must be taken to enable **X11** interfacing between the container and the host machine. This requires the installation of [VcXsrv Windows XServer](https://sourceforge.net/projects/vcxsrv/).
+To run this image on Windows, a few steps must be taken to enable **X11** interfacing between the container and the host machine. 
 
-1. Install Docker for Windows [7/8/10 Home](https://docs.docker.com/toolbox/overview/) or [10 Pro/Educational/Enterprise](https://docs.docker.com/docker-for-windows/install/).
+1. This requires the installation of [VcXsrv Windows XServer](https://sourceforge.net/projects/vcxsrv/).
 
-2. Open **XLaunch** by double clicking on the Desktop Icon.
+2. Install Docker for Windows [7/8/10 Home](https://docs.docker.com/toolbox/overview/) or [10 Pro/Educational/Enterprise](https://docs.docker.com/docker-for-windows/install/).
 
-3. A window will appear for you to set configurations. Use the default options on the first two pages by pressing the next button.
+3. Open **XLaunch** by double clicking on the Desktop Icon.
 
-4. On the third page, select the box next "Disable access control" to ensure that the Docker has access to the XServer.
+4. A window will appear for you to set configurations. Use the default options on the first two pages by pressing the next button.
 
-5. Get your IP address using ipconfig 
+![Page 1](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch1.PNG)
+![Page 2](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch2.PNG)
 
-6. Open Docker and execute `docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -e DISPLAY=x.x.x.x:0.0 compbiocore/nmrdock:latest /bin/bash`
+5. On the third page, select the box next "Disable access control" to ensure that the Docker has access to the XServer.
 
-where `x.x.x.x` is your IP address. To use the development branch NMRdock, replace `latest` with `dev`.
+![Page 3](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch3.PNG)
+![Page 4](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch4.PNG)
+
+6. Get your IP address using ipconfig. This can bee done in Command Line or Powershell
+
+![IPCONFIG](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/ipconfig.PNG)
+
+7. Open Docker and execute `docker run -it -v /c/:/home/ubuntu/data/ -e DISPLAY=x.x.x.x:0.0 compbiocore/nmrdock:latest /bin/bash`
+
+where `x.x.x.x` is your IP address.
+
+To use the development branch NMRdock, replace `latest` with `dev`.
 
 ### Linux
 
