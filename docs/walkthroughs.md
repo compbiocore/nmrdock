@@ -51,17 +51,14 @@ To run this image on Windows, a few steps must be taken to enable **X11** interf
 3. Open **XLaunch** by double clicking on the Desktop Icon.
 
 4. A window will appear for you to set configurations. Use the default options on the first two pages by pressing the next button.
-
-![Page 1](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch1.PNG)
-![Page 2](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch2.PNG)
+![XLaunch Page 1](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch1.PNG)
+![XLaunch Page 2](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch2.PNG)
 
 5. On the third page, select the box next "Disable access control" to ensure that the Docker has access to the XServer.
+![XLaunch Page 3](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch3.PNG)
+![XLaunch Page 4](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch4.PNG)
 
-![Page 3](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch3.PNG)
-![Page 4](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch4.PNG)
-
-6. Get your IP address using ipconfig. This can bee done in Command Line or Powershell
-
+6. Get your IP address using ipconfig. This can be done in Command Line or Powershell
 ![IPCONFIG](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/ipconfig.PNG)
 
 7. Open Docker and execute `docker run -it -v /c/:/home/ubuntu/data/ -e DISPLAY=x.x.x.x:0.0 compbiocore/nmrdock:latest /bin/bash`
