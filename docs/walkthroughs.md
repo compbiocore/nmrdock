@@ -59,7 +59,7 @@ To run this image on Windows, a few steps must be taken to enable **X11** interf
 ![XLaunch Page 4](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch4.PNG)
 
 6. Get your IP address using ipconfig. This can be done in Command Line or Powershell
-![IPCONFIG](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/ipconfig.PNG)
+![IPCONFIG](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/ipconfig2.PNG)
 
 7. Open Docker and execute `docker run -it -v /c/:/home/ubuntu/data/ -e DISPLAY=x.x.x.x:0.0 compbiocore/nmrdock:latest /bin/bash`
 
