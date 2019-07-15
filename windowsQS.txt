@@ -1,0 +1,81 @@
+@echo off
+ECHO Welcome to Windows NMRDock Quick Start
+ECHO --------------------------------------
+REM Checking what build version of Windows the User has and setting it as a variable
+FOR /f "tokens=4,5,6 delims=[]. " %%G in ('ver') Do (SET major_ver=%%G& SET minor_ver=%%H& SET build_ver=%%I)
+
+REM Check if major and minor Windows versions are sufficient enough to download Docker
+IF %major_ver% GEQ 7 (
+	GOTO VcXsrv
+) ELSE IF %major_ver%==6 (
+	IF %minor_ver% GEQ 1 (
+		GOTO VcXsrv
+	)
+) ELSE (
+	ECHO You have an outdated version of Windows that is not compatible with Docker Software.
+	pause
+	EXIT
+)
+
+:VcXsrv
+REM Check if VcXsrv Exists
+IF EXIST "C:\Program Files\VcXsrv\xlaunch.exe" (
+	ECHO VcXsrv will now open. Hit 'Next' twice, then please select the box next to "Disable access control". 
+	ECHO Hit 'Next' and then press 'Finish'.
+	pause
+	"C:\Program Files\VcXsrv\xlaunch.exe"
+	GOTO Docker
+) ELSE (
+	ECHO Please install VcXsrv Windows X Servr from: https://sourceforge.net/projects/vcxsrv/
+	pause
+	EXIT
+)
+ 
+:Docker 
+IF EXIST "C:\Program Files\Docker Toolbox\start.sh" (
+	ECHO Docker Toolbox is installed.
+	ECHO Please give Docker a minute to load.
+	GOTO IP
+) ELSE IF EXIST "C:\Program Files\Docker Desktop\start.sh" (
+	ECHO Docker Desktop is installed.
+	GOTO Check Version Build
+) ELSE (
+	ECHO Please install Docker Toolbox from: https://docs.docker.com/toolbox/toolbox_install_windows/
+	pause
+	EXIT
+)
+
+:Check Version Build 
+IF %build_ver% GEQ 14393 (
+	ECHO Please give Docker a minute to load.
+	GOTO IP 
+) ELSE (
+	ECHO You do not have a version of Windows that supports Docker Desktop.
+	ECHO Please uninstall Docker Desktop.
+	ECHO Please install Docker Toolbox from: https://docs.docker.com/toolbox/toolbox_install_windows/
+	pause
+	EXIT
+)
+
+:IP
+FOR /f "usebackq tokens=1,2 delims=:" %%G in (`ipconfig ^| find "IPv4"`) Do (SET IP=%%H 
+	GOTO Command Line
+)
+
+:Command Line
+SET IP=%IP:~1,-1%
+SET cmd_line=docker run -it -v /c/:/home/ubuntu/data/ -e DISPLAY=%IP%:0.0 compbiocore/nmrdock:latest /bin/bash
+ECHO Loading...
+"C:\Users\%USERNAME%\Desktop\Docker Quickstart Terminal.lnk" %cmd_line%
+
+
+
+
+
+
+
+
+
+
+
+
