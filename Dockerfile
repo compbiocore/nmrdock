@@ -34,9 +34,9 @@ USER ubuntu
 ENV HOME /home/ubuntu
 
 RUN cd /home/ubuntu \
- && wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh \
- && bash Miniconda2-latest-Linux-x86_64.sh -b \
- && rm Miniconda2-latest-Linux-x86_64.sh
+ && wget https://repo.continuum.io/miniconda/Miniconda2-4.6.14-Linux-x86_64.sh \
+ && bash Miniconda2-4.6.14-Linux-x86_64.sh -b \
+ && rm Miniconda2-4.6.14-Linux-x86_64.sh
 
 ENV PATH /home/ubuntu/miniconda2/bin:$PATH
 
