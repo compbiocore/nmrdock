@@ -1,5 +1,25 @@
 # NMRdock Walkthrough
 
+### Using NMRPipe to Process Bruker Data in NMRdock
+1. Change the directory into your dataset. NMRdock is able to access your computer through `/home/ubuntu/data`. For the purposes of this tutorial, we are going to use the test data by typing into the command line:
+
+	`cd /home/ubuntu/test/bruker2D`
+
+2. Once we are in the folder with our data, type the command `bruker` and the bruker command window will open up.
+![Bruker](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/brukerScreenShot.png)
+
+3. Read in the parameters by pressing the **Read Parameters** button.
+![Bruker Read Parameters](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/brukerScreenShotread.png)
+
+4. Check to make sure that the parameters were read in correctly and update any values that need to be updated. Then press **Save Script** followed by **Execute Script** and the script will be executed to convert your Bruker formatted data into NMRPipe. You can then close the window and return to the command line.
+![Bruker](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/brukerScreenShotfid.png)
+5. To Fourier Transform the data, execute `./nmrproc.com` in the command line.
+![nmrproc.com](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/brukerScreenShotnmrproc.png)
+6. Now we can view the processed spectrum in NMRDraw by executing `nmrDraw`, which will open up the nmrDraw window (this can take a few seconds).
+![Bruker](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/bruker2DnmrDraw.png)
+7. If you are using your own data, you can phase and alter the `nmrproc.com` file yourself at this point. However, the `nmrproc.com` file for the included bruker data is already phased properly. Once the data is phased to your liking, you can close the NMRDraw window and return to the command line.
+8. Congratulations! Your NMR spectrum is now processed. To convert the NMRPipe processed spectrum to the universal UCSF format, execute `pipe2ucsf test.ft2 bruker2D.ucsf`. You can then open the spectrum in sparky by executing `sparky bruker2D.ucsf`.
+
 ### Docker Installation
 
 Docker engine for [Mac](https://docs.docker.com/docker-for-mac/install/), [Windows (Home)](https://docs.docker.com/toolbox/overview/),[Windows (Pro, Educational, Enterprise)](https://docs.docker.com/docker-for-windows/install/), and [Linux](https://docs.docker.com/v17.12/install/) must be downloaded and installed in order to run the Docker Image.
