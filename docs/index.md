@@ -7,12 +7,12 @@
 
 ## Overview
 
-NMRdock is a [Docker](https://www.docker.com/) container image for processing raw NMR time domain data into frequency domain spectra and analyzing the spectra. The image includes [NMRPipe](https://www.ibbr.umd.edu/nmrpipe/index.html) and [NMRFAM-Sparky](https://nmrfam.wisc.edu/nmrfam-sparky-distribution/) for processing and analysis, respectively. NMRdock can be installed on any operating system (OSX, Windows, or Linux) and has the full functionality of both NMRPipe and NMRFAM-Sparky.
+NMRdock is a [Docker](https://www.docker.com/) container image for processing raw NMR time domain data into frequency domain spectra and analyzing the spectra. The image includes [NMRPipe](https://www.ibbr.umd.edu/nmrpipe/index.html) and [NMRFAM-Sparky](https://nmrfam.wisc.edu/nmrfam-sparky-distribution/) for processing and analysis, respectively. NMRdock can be installed on any operating system (OSX, Windows, or Linux) and has the full functionality of both NMRPipe and NMRFAM-Sparky. For guides on processing BioNMR data in NMRdock, please access our [Walkthrough Section](https://compbiocore.github.io/nmrdock/walkthroughs/)
 ![NMRdock](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/NMRdockOverview.png)
 
 ## Quick Start Scripts
 
-Below are quick start scripts for OSX and Linux (Windows coming soon; please use the [installation guide](https://compbiocore.github.io/nmrdock/walkthroughs/#windows)). Click on your operating system to access the script. Right click and save the script as either `macQS.sh` or `linuxQS.sh`.
+Below are quick start scripts for OSX, Linux, and Windows (For detailed Installation Instructions, please see the Installation Guides below). Click on your operating system to access the script. Right click and save the script as either `macQS.sh`,`linuxQS.sh`, or `windowQS.bat`.
 
 [![OSX](https://github.com/compbiocore/nmrdock/raw/master/docs/assets/macQS.png)](https://raw.githubusercontent.com/compbiocore/nmrdock/master/macQS)
 
