@@ -109,7 +109,9 @@ RUN cd home/ubuntu \
   && chmod -R 755 /home/ubuntu/nmr_wrappers
 
 RUN sudo ln -s /home/ubuntu/NMRPipe/nmrbin.linux /usr/local/bin/nmrbin.linux \
-  && echo "alias sparky=\"export SPARKYHOME='pwd';sparky\"" >> /home/ubuntu/.bashrc
+  && sudo ln -s /home/ubuntu/NMRPipe/com /usr/local/bin/com \
+  && echo "alias sparky=\"export SPARKYHOME=\`pwd\`;sparky\"" >> /home/ubuntu/.bashrc
 
 ENV PATH /usr/local/bin/nmrbin.linux:$PATH
+ENV PATH /usr/local/bin/com:$PATH
 ENV PATH /home/ubuntu/nmr_wrappers:$PATH
