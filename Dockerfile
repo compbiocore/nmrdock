@@ -66,8 +66,8 @@ RUN cd home/ubuntu \
   # && echo 'setenv PATH ${PATH}:/usr/local/bin/nmrfam-sparky-linux64/bin' >> /home/ubuntu/.cshrc
 
 RUN cd home/ubuntu \
-  && wget https://sourceforge.net/projects/nmr-relax/files/4.1.1/relax-4.1.1.GNU-Linux.x86_64.tar.bz2 \
-  && tar xjf relax-4.1.1.GNU-Linux.x86_64.tar.bz2 \
+  && wget https://sourceforge.net/projects/nmr-relax/files/4.1.3/relax-4.1.3.GNU-Linux.x86_64.tar.bz2 \
+  && tar xjf relax-4.1.3.GNU-Linux.x86_64.tar.bz2 \
   && sudo ln -s /home/ubuntu/relax-4.1.1/relax /usr/local/bin \
   && wget https://downloads.sourceforge.net/project/minfx/1.0.12/minfx-1.0.12.zip \
   && unzip minfx-1.0.12.zip \
