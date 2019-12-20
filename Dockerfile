@@ -40,7 +40,7 @@ RUN cd /home/ubuntu \
 
 ENV PATH /home/ubuntu/miniconda2/bin:$PATH
 
-RUN conda install -y numpy scipy wxpython 
+RUN conda install -y numpy scipy wxpython pyyaml
 
 RUN cd home/ubuntu/ \
   && mkdir NMRPipe \
