@@ -1,0 +1,626 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="NMR Docker Image">
+      
+      
+        <link rel="canonical" href="https://compbiocore.github.io/walkthroughs/">
+      
+      
+        <meta name="author" content="Andrew Leith">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0, mkdocs-material-3.0.3">
+    
+    
+      
+        <title>Walkthroughs - Computational Biology Core - Brown University</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546e7a">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../styles/dark_mode.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#nmrdock-walkthrough" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://compbiocore.github.io/" title="Computational Biology Core - Brown University" class="md-header-nav__button md-logo">
+          
+            <img src="../images/cbc-logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Computational Biology Core - Brown University
+              </span>
+              <span class="md-header-nav__topic">
+                Walkthroughs
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/compbiocore/nmrdock/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://compbiocore.github.io/" title="Computational Biology Core - Brown University" class="md-nav__button md-logo">
+      
+        <img src="../images/cbc-logo.svg" width="48" height="48">
+      
+    </a>
+    Computational Biology Core - Brown University
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/compbiocore/nmrdock/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Walkthroughs
+      </label>
+    
+    <a href="./" title="Walkthroughs" class="md-nav__link md-nav__link--active">
+      Walkthroughs
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#using-nmrpipe-to-process-bruker-data-in-nmrdock" title="Using NMRPipe to Process Bruker Data in NMRdock" class="md-nav__link">
+    Using NMRPipe to Process Bruker Data in NMRdock
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-installation" title="Docker Installation" class="md-nav__link">
+    Docker Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#osx" title="OSX" class="md-nav__link">
+    OSX
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windows" title="Windows" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux" title="Linux" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../overview/" title="Tool Overview" class="md-nav__link">
+      Tool Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../media/" title="Instructional Media" class="md-nav__link">
+      Instructional Media
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#using-nmrpipe-to-process-bruker-data-in-nmrdock" title="Using NMRPipe to Process Bruker Data in NMRdock" class="md-nav__link">
+    Using NMRPipe to Process Bruker Data in NMRdock
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-installation" title="Docker Installation" class="md-nav__link">
+    Docker Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#osx" title="OSX" class="md-nav__link">
+    OSX
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windows" title="Windows" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux" title="Linux" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/compbiocore/nmrdock/edit/master/docs/walkthroughs.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="nmrdock-walkthrough">NMRdock Walkthrough</h1>
+<h3 id="using-nmrpipe-to-process-bruker-data-in-nmrdock">Using NMRPipe to Process Bruker Data in NMRdock</h3>
+<ol>
+<li>
+<p>Change the directory into your dataset. NMRdock is able to access your computer through <code>/home/ubuntu/data</code>. For the purposes of this tutorial, we are going to use the test data by typing into the command line:</p>
+<p><code>cd /home/ubuntu/test/bruker2D</code></p>
+</li>
+<li>
+<p>Once we are in the folder with our data, type the command <code>bruker</code> and the bruker command window will open up.
+<img alt="Bruker" src="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/brukerScreenShot.png" /></p>
+</li>
+<li>
+<p>Read in the parameters by pressing the <strong>Read Parameters</strong> button.
+<img alt="Bruker Read Parameters" src="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/brukerScreenShotread.png" /></p>
+</li>
+<li>
+<p>Check to make sure that the parameters were read in correctly and update any values that need to be updated. Then press <strong>Save Script</strong> followed by <strong>Execute Script</strong> and the script will be executed to convert your Bruker formatted data into NMRPipe. You can then close the window and return to the command line.
+<img alt="Bruker" src="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/brukerScreenShotfid.png" /></p>
+</li>
+<li>To Fourier Transform the data, execute <code>./nmrproc.com</code> in the command line.
+<img alt="nmrproc.com" src="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/brukerScreenShotnmrproc.png" /></li>
+<li>Now we can view the processed spectrum in NMRDraw by executing <code>nmrDraw</code>, which will open up the nmrDraw window (this can take a few seconds).
+<img alt="Bruker" src="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/bruker2DnmrDraw.png" /></li>
+<li>If you are using your own data, you can phase and alter the <code>nmrproc.com</code> file yourself at this point. However, the <code>nmrproc.com</code> file for the included bruker data is already phased properly. Once the data is phased to your liking, you can close the NMRDraw window and return to the command line.</li>
+<li>Congratulations! Your NMR spectrum is now processed. To convert the NMRPipe processed spectrum to the universal UCSF format, execute <code>pipe2ucsf test.ft2 bruker2D.ucsf</code>. You can then open the spectrum in sparky by executing <code>sparky bruker2D.ucsf</code>.</li>
+</ol>
+<h3 id="docker-installation">Docker Installation</h3>
+<p>Docker engine for <a href="https://docs.docker.com/docker-for-mac/install/">Mac</a>, <a href="https://docs.docker.com/toolbox/overview/">Windows (Home)</a>,<a href="https://docs.docker.com/docker-for-windows/install/">Windows (Pro, Educational, Enterprise)</a>, and <a href="https://docs.docker.com/v17.12/install/">Linux</a> must be downloaded and installed in order to run the Docker Image.</p>
+<p><strong>NOTE:</strong> Docker Desktop does <strong>NOT</strong> work on Windows 10 Home Edition. Windows 10 Home Edition requires Docker Toolbox.</p>
+<h3 id="osx">OSX</h3>
+<p>To run this image on OSX, a few steps must be taken to enable <strong>X11</strong> interfacing between the container and the host machine. This requires the installation of <a href="https://www.xquartz.org/">XQuartz</a>.</p>
+<ol>
+<li>
+<p>Install <a href="https://docs.docker.com/docker-for-mac/install/">Docker Desktop</a></p>
+</li>
+<li>
+<p>Use <a href="https://brew.sh/">Homebrew</a> or <a href="https://www.macports.org/">MacPorts</a> to install <strong>socat</strong>:</p>
+<p><code>brew install socat</code> or <code>sudo port install socat</code></p>
+</li>
+<li>
+<p>With <strong>socat</strong> installed, open a terminal window and type:</p>
+<p><code>socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"</code></p>
+</li>
+<li>
+<p>Leave the <strong>socat</strong> window open and open a new tab in terminal.</p>
+</li>
+<li>
+<p>Run the docker image by typing:</p>
+<p><code>docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmrdock:latest /bin/bash</code></p>
+<p>where <code>x.x.x.x</code> is given by <code>ifconfig getifaddr en0</code> and <code>[path to a directory on local computer]</code> can be set to your `pwd` or the directory of your data. To use the development branch NMRdock, replace <code>latest</code> with <code>dev</code>.</p>
+</li>
+</ol>
+<p>This can be done with the following script command:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c">#!/bin/csh</span>
+
+open -a <span class="s2">&quot;Terminal&quot;</span>
+osascript -e <span class="s1">&#39;tell application &quot;Terminal&quot; to do script &quot;socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\\\&quot;$DISPLAY\\\&quot;&quot;&#39;</span>
+<span class="nb">set </span><span class="nv">A</span> <span class="o">=</span> <span class="sb">`</span>ipconfig getifaddr en0<span class="sb">`</span>
+<span class="nb">set </span><span class="nv">C</span> <span class="o">=</span> <span class="s2">&quot;:0 compbiocore/nmrdock:latest /bin/bash&quot;</span>
+<span class="nb">set </span><span class="nv">B</span> <span class="o">=</span> <span class="s2">&quot;docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/home/ubuntu/data/ -w /home/ubuntu/data/ -e DISPLAY=$A$C&quot;</span>
+
+<span class="nb">exec</span> <span class="nv">$B</span>
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="windows">Windows</h3>
+<p>To run this image on Windows, a few steps must be taken to enable <strong>X11</strong> interfacing between the container and the host machine. </p>
+<ol>
+<li>
+<p>This requires the installation of <a href="https://sourceforge.net/projects/vcxsrv/">VcXsrv Windows XServer</a>.</p>
+</li>
+<li>
+<p>Install Docker for Windows <a href="https://docs.docker.com/toolbox/overview/">7/8/10 Home</a> or <a href="https://docs.docker.com/docker-for-windows/install/">10 Pro/Educational/Enterprise</a>.</p>
+</li>
+<li>
+<p>Open <strong>XLaunch</strong> by double clicking on the Desktop Icon.</p>
+</li>
+<li>
+<p>A window will appear for you to set configurations. Use the default options on the first two pages by pressing the next button.
+<img alt="XLaunch Page 1" src="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch1.PNG" />
+<img alt="XLaunch Page 2" src="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch2.PNG" /></p>
+</li>
+<li>
+<p>On the third page, select the box next "Disable access control" to ensure that the Docker has access to the XServer.
+<img alt="XLaunch Page 3" src="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch3.PNG" />
+<img alt="XLaunch Page 4" src="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/XLaunch4.PNG" /></p>
+</li>
+<li>
+<p>Get your IP address using ipconfig. This can be done in Command Line or Powershell
+<img alt="IPCONFIG" src="https://github.com/compbiocore/nmrdock/raw/master/docs/assets/ipconfig2.PNG" /></p>
+</li>
+<li>
+<p>Open Docker and execute <code>docker run -it -v /c/:/home/ubuntu/data/ -e DISPLAY=x.x.x.x:0.0 compbiocore/nmrdock:latest /bin/bash</code></p>
+</li>
+</ol>
+<p>where <code>x.x.x.x</code> is your IP address.</p>
+<p>To use the development branch NMRdock, replace <code>latest</code> with <code>dev</code>.</p>
+<h3 id="linux">Linux</h3>
+<p>Most Linux distros have a native XServer that can be accessed by Docker. </p>
+<p>Install Docker for your distribution of <a href="https://docs.docker.com/install/">Linux</a></p>
+<p><code>docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v [path to a directory on local computer]:/home/ubuntu/data/ compbiocore/nmrdock:latest /bin/bash</code></p>
+<p>To use the development branch NMRdock, replace <code>latest</code> with <code>dev</code>.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href=".." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../overview/" title="Tool Overview" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Tool Overview
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0",url:{base:".."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-115983496-2","compbiocore.github.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>
