@@ -92,11 +92,13 @@ RUN cd home/ubuntu \
   && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/testdata/bruker3D.tar.gz \
   && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/testdata/varian2D.tar.gz \
   && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/testdata/varian3D.tar.gz \
+  && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/testdata/config.tar.gz \
   && wget https://raw.githubusercontent.com/compbiocore/nmrdock/master/testdata/testcommands.txt \
   && tar -xzvf bruker2D.tar.gz \
   && tar -xzvf bruker3D.tar.gz \
   && tar -xzvf varian2D.tar.gz \
   && tar -xzvf varian3D.tar.gz \
+  && tar -xzvf config.tar.gz \
   && rm -rf *.tar.gz
 
 RUN cd home/ubuntu \
