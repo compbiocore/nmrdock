@@ -10,28 +10,30 @@ Docker engine for [Mac](https://docs.docker.com/docker-for-mac/install/), [Windo
 
 ### OSX
 
-To run this image on OSX, a few steps must be taken to enable **X11** interfacing between the container and the host machine. This requires the installation of [XQuartz](https://www.xquartz.org/).
+To run this image on OSX, a few steps must be taken to enable **X11** interfacing between the container and the host machine. This requires the installation of [XQuartz](https://www.xquartz.org/). Credit belongs to: https://gist.github.com/cschiewek/246a244ba23da8b9f0e7b11a68bf3285#gistcomment-3477013 
 
-1.  Use [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/) to install **socat**:
+1. Use [Homebrew](https://brew.sh/) to install **xquartz**:
 
-	`brew install socat` or `port install socat`
-2. With **socat** installed, open a terminal window and type:
+	`brew install --cask xquartz`
+1. Start **xquartz** in the settings allow incoming network traffic.
+1. With **xquartz** installed, open a terminal window and type:
 
-	`socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"`
-3. Leave the **socat** window open and open a new tab in terminal.
+	`xhost +localhost"`
+1.1 Sometimes you will receive an error, just open a terminal through xquartz itself. Right click the dock icon, select applications then terminal and input the command there. Leave this terminal open.
+
 4. Run the docker image by typing:
 
-	`docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=x.x.x.x:0 compbiocore/nmrdock:latest /bin/bash`
+	`docker run -it -v [path to a directory on local computer]:/home/ubuntu/data/ -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=host.docker.internal:0 compbiocore/nmrdock:latest /bin/bash`
 
-	where `x.x.x.x` is given by `ifconfig getifaddr en0` and `[path to a directory on local computer]` can be set to your \`pwd\` or the directory of your data. To use the development branch NMRdock, replace `latest` with `dev`.
+	where `[path to a directory on local computer]` can be set to your \`pwd\` or the directory of your data. To use the development branch NMRdock, replace `latest` with `dev`.
 
 This can be done with the following script command:
 ```
 #!/bin/csh
 
 open -a "Terminal"
-osascript -e 'tell application "Terminal" to do script "socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\\\"$DISPLAY\\\""'
-set A = `ipconfig getifaddr en0`
+osascript -e 'tell application "Terminal" to do script "xhost +localhost"'
+set A = `host.docker.internal`
 set C = ":0 compbiocore/nmrdock:latest /bin/bash"
 set B = "docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/home/ubuntu/data/ -w /home/ubuntu/data/ -e DISPLAY=$A$C"
 
